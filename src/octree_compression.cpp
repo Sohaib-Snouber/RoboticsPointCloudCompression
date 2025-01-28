@@ -36,7 +36,12 @@ private:
 
         // Configure the Octree Compressor
         pcl::io::OctreePointCloudCompression<pcl::PointXYZRGBA> compressor(
-            pcl::io::LOW_RES_ONLINE_COMPRESSION_WITH_COLOR, true);
+            pcl::io::HIGH_RES_ONLINE_COMPRESSION_WITH_COLOR, // Compression profile
+            true,                                                // Show compression statistics
+            0.001,                                             // Octree resolution (1 mm voxels)
+            24,                                                 // Point coordinate bit budget (bits for XYZ precision)
+            12                                                   // Color bit budget (bits for RGB precision)
+        );
 
         // Compress the point cloud
         std::stringstream compressed_data_stream;
